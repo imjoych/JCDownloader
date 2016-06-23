@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		236456DF1D1BC5B8004B8E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456DE1D1BC5B8004B8E41 /* main.m */; };
+		236456E21D1BC5B8004B8E41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456E11D1BC5B8004B8E41 /* AppDelegate.m */; };
+		236456E51D1BC5B8004B8E41 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456E41D1BC5B8004B8E41 /* ViewController.m */; };
+		236456E81D1BC5B8004B8E41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236456E61D1BC5B8004B8E41 /* Main.storyboard */; };
+		236456EA1D1BC5B8004B8E41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 236456E91D1BC5B8004B8E41 /* Assets.xcassets */; };
+		236456ED1D1BC5B8004B8E41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 236456EB1D1BC5B8004B8E41 /* LaunchScreen.storyboard */; };
+		236456FD1D1BC756004B8E41 /* JCDownloadAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456F41D1BC756004B8E41 /* JCDownloadAgent.m */; };
+		236456FE1D1BC756004B8E41 /* JCDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456F71D1BC756004B8E41 /* JCDownloadOperation.m */; };
+		236456FF1D1BC756004B8E41 /* JCDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456FA1D1BC756004B8E41 /* JCDownloadQueue.m */; };
+		236457001D1BC756004B8E41 /* JCDownloadUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456FC1D1BC756004B8E41 /* JCDownloadUtilities.m */; };
+		236457131D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364570E1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m */; };
+		236457141D1BCA0D004B8E41 /* JCTImageDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236457101D1BCA0D004B8E41 /* JCTImageDownloadCell.m */; };
+		236457151D1BCA0D004B8E41 /* JCTImageDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 236457121D1BCA0D004B8E41 /* JCTImageDownloadItem.m */; };
+		488E1D9147F931561C715E6B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D38B591A6023338CC324831 /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		236456DB1D1BC5B8004B8E41 /* JCDownloaderDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JCDownloaderDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		236456DE1D1BC5B8004B8E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		236456E01D1BC5B8004B8E41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		236456E11D1BC5B8004B8E41 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		236456E31D1BC5B8004B8E41 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		236456E41D1BC5B8004B8E41 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		236456E71D1BC5B8004B8E41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		236456E91D1BC5B8004B8E41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		236456EC1D1BC5B8004B8E41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		236456EE1D1BC5B8004B8E41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		236456F31D1BC756004B8E41 /* JCDownloadAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDownloadAgent.h; sourceTree = "<group>"; };
+		236456F41D1BC756004B8E41 /* JCDownloadAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDownloadAgent.m; sourceTree = "<group>"; };
+		236456F51D1BC756004B8E41 /* JCDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDownloader.h; sourceTree = "<group>"; };
+		236456F61D1BC756004B8E41 /* JCDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDownloadOperation.h; sourceTree = "<group>"; };
+		236456F71D1BC756004B8E41 /* JCDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDownloadOperation.m; sourceTree = "<group>"; };
+		236456F81D1BC756004B8E41 /* JCDownloadOperationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDownloadOperationProtocol.h; sourceTree = "<group>"; };
+		236456F91D1BC756004B8E41 /* JCDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDownloadQueue.h; sourceTree = "<group>"; };
+		236456FA1D1BC756004B8E41 /* JCDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDownloadQueue.m; sourceTree = "<group>"; };
+		236456FB1D1BC756004B8E41 /* JCDownloadUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDownloadUtilities.h; sourceTree = "<group>"; };
+		236456FC1D1BC756004B8E41 /* JCDownloadUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCDownloadUtilities.m; sourceTree = "<group>"; };
+		2364570D1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLargeFileDownloadViewController.h; sourceTree = "<group>"; };
+		2364570E1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCLargeFileDownloadViewController.m; sourceTree = "<group>"; };
+		2364570F1D1BCA0D004B8E41 /* JCTImageDownloadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTImageDownloadCell.h; sourceTree = "<group>"; };
+		236457101D1BCA0D004B8E41 /* JCTImageDownloadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTImageDownloadCell.m; sourceTree = "<group>"; };
+		236457111D1BCA0D004B8E41 /* JCTImageDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTImageDownloadItem.h; sourceTree = "<group>"; };
+		236457121D1BCA0D004B8E41 /* JCTImageDownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTImageDownloadItem.m; sourceTree = "<group>"; };
+		236457161D1BCB4D004B8E41 /* JCDownloaderDemo-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCDownloaderDemo-prefix.pch"; sourceTree = "<group>"; };
+		6D38B591A6023338CC324831 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2DABA7C5D6D1FC49CD40D37 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		AC63BE219D6B25E0EA49DBF4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		236456D81D1BC5B8004B8E41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				488E1D9147F931561C715E6B /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		236456C21D1BC578004B8E41 = {
+			isa = PBXGroup;
+			children = (
+				236456F21D1BC756004B8E41 /* JCDownloader */,
+				236456DC1D1BC5B8004B8E41 /* JCDownloaderDemo */,
+				236456CD1D1BC578004B8E41 /* Products */,
+				5FCB95AF7A6B29ACBD24733A /* Pods */,
+				639CE26D120DFB8A3BB82105 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		236456CD1D1BC578004B8E41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				236456DB1D1BC5B8004B8E41 /* JCDownloaderDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		236456DC1D1BC5B8004B8E41 /* JCDownloaderDemo */ = {
+			isa = PBXGroup;
+			children = (
+				2364570C1D1BCA0D004B8E41 /* Classes */,
+				236456E01D1BC5B8004B8E41 /* AppDelegate.h */,
+				236456E11D1BC5B8004B8E41 /* AppDelegate.m */,
+				236456E31D1BC5B8004B8E41 /* ViewController.h */,
+				236456E41D1BC5B8004B8E41 /* ViewController.m */,
+				236456E61D1BC5B8004B8E41 /* Main.storyboard */,
+				236456E91D1BC5B8004B8E41 /* Assets.xcassets */,
+				236456EB1D1BC5B8004B8E41 /* LaunchScreen.storyboard */,
+				236456EE1D1BC5B8004B8E41 /* Info.plist */,
+				236456DD1D1BC5B8004B8E41 /* Supporting Files */,
+			);
+			path = JCDownloaderDemo;
+			sourceTree = "<group>";
+		};
+		236456DD1D1BC5B8004B8E41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				236456DE1D1BC5B8004B8E41 /* main.m */,
+				236457161D1BCB4D004B8E41 /* JCDownloaderDemo-prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		236456F21D1BC756004B8E41 /* JCDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				236456F31D1BC756004B8E41 /* JCDownloadAgent.h */,
+				236456F41D1BC756004B8E41 /* JCDownloadAgent.m */,
+				236456F51D1BC756004B8E41 /* JCDownloader.h */,
+				236456F61D1BC756004B8E41 /* JCDownloadOperation.h */,
+				236456F71D1BC756004B8E41 /* JCDownloadOperation.m */,
+				236456F81D1BC756004B8E41 /* JCDownloadOperationProtocol.h */,
+				236456F91D1BC756004B8E41 /* JCDownloadQueue.h */,
+				236456FA1D1BC756004B8E41 /* JCDownloadQueue.m */,
+				236456FB1D1BC756004B8E41 /* JCDownloadUtilities.h */,
+				236456FC1D1BC756004B8E41 /* JCDownloadUtilities.m */,
+			);
+			path = JCDownloader;
+			sourceTree = "<group>";
+		};
+		2364570C1D1BCA0D004B8E41 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2364570D1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.h */,
+				2364570E1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m */,
+				2364570F1D1BCA0D004B8E41 /* JCTImageDownloadCell.h */,
+				236457101D1BCA0D004B8E41 /* JCTImageDownloadCell.m */,
+				236457111D1BCA0D004B8E41 /* JCTImageDownloadItem.h */,
+				236457121D1BCA0D004B8E41 /* JCTImageDownloadItem.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5FCB95AF7A6B29ACBD24733A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2DABA7C5D6D1FC49CD40D37 /* Pods.debug.xcconfig */,
+				AC63BE219D6B25E0EA49DBF4 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		639CE26D120DFB8A3BB82105 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D38B591A6023338CC324831 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		236456DA1D1BC5B8004B8E41 /* JCDownloaderDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 236456EF1D1BC5B8004B8E41 /* Build configuration list for PBXNativeTarget "JCDownloaderDemo" */;
+			buildPhases = (
+				8C1DA44C4A992F45D8E9182D /* Check Pods Manifest.lock */,
+				236456D71D1BC5B8004B8E41 /* Sources */,
+				236456D81D1BC5B8004B8E41 /* Frameworks */,
+				236456D91D1BC5B8004B8E41 /* Resources */,
+				024D0FCD72934CDD73E2D209 /* Embed Pods Frameworks */,
+				876D5619AD7F84CA0C49AC8F /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JCDownloaderDemo;
+			productName = JCDownloaderDemo;
+			productReference = 236456DB1D1BC5B8004B8E41 /* JCDownloaderDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		236456C31D1BC578004B8E41 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Boych<https://github.com/Boych>";
+				TargetAttributes = {
+					236456DA1D1BC5B8004B8E41 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 236456C61D1BC578004B8E41 /* Build configuration list for PBXProject "JCDownloader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 236456C21D1BC578004B8E41;
+			productRefGroup = 236456CD1D1BC578004B8E41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				236456DA1D1BC5B8004B8E41 /* JCDownloaderDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		236456D91D1BC5B8004B8E41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				236456ED1D1BC5B8004B8E41 /* LaunchScreen.storyboard in Resources */,
+				236456EA1D1BC5B8004B8E41 /* Assets.xcassets in Resources */,
+				236456E81D1BC5B8004B8E41 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		024D0FCD72934CDD73E2D209 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		876D5619AD7F84CA0C49AC8F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C1DA44C4A992F45D8E9182D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		236456D71D1BC5B8004B8E41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				236456FE1D1BC756004B8E41 /* JCDownloadOperation.m in Sources */,
+				236456FD1D1BC756004B8E41 /* JCDownloadAgent.m in Sources */,
+				236456E51D1BC5B8004B8E41 /* ViewController.m in Sources */,
+				236457141D1BCA0D004B8E41 /* JCTImageDownloadCell.m in Sources */,
+				236456E21D1BC5B8004B8E41 /* AppDelegate.m in Sources */,
+				236456FF1D1BC756004B8E41 /* JCDownloadQueue.m in Sources */,
+				236457151D1BCA0D004B8E41 /* JCTImageDownloadItem.m in Sources */,
+				236457131D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m in Sources */,
+				236456DF1D1BC5B8004B8E41 /* main.m in Sources */,
+				236457001D1BC756004B8E41 /* JCDownloadUtilities.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		236456E61D1BC5B8004B8E41 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				236456E71D1BC5B8004B8E41 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		236456EB1D1BC5B8004B8E41 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				236456EC1D1BC5B8004B8E41 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		236456D21D1BC578004B8E41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		236456D31D1BC578004B8E41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		236456F01D1BC5B8004B8E41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2DABA7C5D6D1FC49CD40D37 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = "${SRCROOT}/JCDownloaderDemo/JCDownloaderDemo-prefix.pch";
+				INFOPLIST_FILE = JCDownloaderDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JC.JCDownloaderDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		236456F11D1BC5B8004B8E41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC63BE219D6B25E0EA49DBF4 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = "${SRCROOT}/JCDownloaderDemo/JCDownloaderDemo-prefix.pch";
+				INFOPLIST_FILE = JCDownloaderDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JC.JCDownloaderDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		236456C61D1BC578004B8E41 /* Build configuration list for PBXProject "JCDownloader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				236456D21D1BC578004B8E41 /* Debug */,
+				236456D31D1BC578004B8E41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		236456EF1D1BC5B8004B8E41 /* Build configuration list for PBXNativeTarget "JCDownloaderDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				236456F01D1BC5B8004B8E41 /* Debug */,
+				236456F11D1BC5B8004B8E41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 236456C31D1BC578004B8E41 /* Project object */;
+}
