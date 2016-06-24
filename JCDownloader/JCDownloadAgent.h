@@ -11,19 +11,19 @@
 
 @class JCDownloadItem;
 
-/** 文件下载网络请求类 */
-@interface JCDownloadAgent : NSObject<JCDownloadOperationProtocol>
+/** File download agent class. */
+@interface JCDownloadAgent : NSObject <JCDownloadOperationProtocol>
 
-/** 设置自动暂停并生成resumeData的最小文件大小，默认为2M */
-@property (nonatomic, assign) int64_t minFileSizeForProducingResumeData;
+@property (nonatomic, assign) int64_t minFileSizeForAutoProducingResumeData; ///< minimum file size for automatically producing resumeData, default is 2M.
 
+/** Singleton instance of JCDownloadAgent. */
 + (instancetype)sharedAgent;
 
-/** 判断文件是否下载 */
+/** Check file is downloaded or not. */
 - (BOOL)isFileDownloaded:(JCDownloadItem *)downloadItem;
 
-/** 删除下载文件
- * @param downloadItem 下载项，对应下载任务未停止时禁止调用该方法，防止删除临时文件时与系统写入/删除操作冲突
+/** Delete downloaded files. 
+ *  @param downloadItem download operation info. It is prohibited to call the method when the download task is in the progress, which avoid conflicts with the system to write or delete the download temporary files.
  */
 - (void)removeDownloadFile:(JCDownloadItem *)downloadItem;
 

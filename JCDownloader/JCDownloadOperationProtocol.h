@@ -10,19 +10,19 @@
 
 @class JCDownloadOperation;
 
-/** 下载操作协议 */
+/** Download operation protocol. */
 @protocol JCDownloadOperationProtocol <NSObject>
 
-/** 开始文件下载请求 */
+/** Start download operation. */
 - (void)startDownload:(JCDownloadOperation *)operation;
 
-/** 暂停文件下载请求 */
+/** Pause download operation. */
 - (void)pauseDownload:(JCDownloadOperation *)operation;
 
-/** 结束文件下载请求 */
+/** Finish download operation. */
 - (void)finishDownload:(JCDownloadOperation *)operation;
 
-/** 删除下载请求并删除文件 */
+/** Finish download operation and remove download files. */
 - (void)removeDownload:(JCDownloadOperation *)operation;
 
 @end

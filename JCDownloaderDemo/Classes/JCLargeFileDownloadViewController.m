@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) JCDownloadOperation *downloadOperation;
 @property (nonatomic, strong) UIButton *downloadButton;
-@property (nonatomic, strong) UIButton *deleteButton;
+@property (nonatomic, strong) UIButton *removeButton;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) UILabel *progressLabel;
 
@@ -37,24 +37,24 @@
     downloadButton.layer.cornerRadius = 2.f;
     downloadButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     downloadButton.layer.borderWidth = 1.f;
-    [downloadButton setTitle:@"开始下载" forState:UIControlStateNormal];
+    [downloadButton setTitle:@"Start download" forState:UIControlStateNormal];
     [downloadButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [downloadButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [downloadButton addTarget:self action:@selector(downloadAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:downloadButton];
     _downloadButton = downloadButton;
     
-    UIButton *deleteButton = [[UIButton alloc] init];
-    deleteButton.clipsToBounds = YES;
-    deleteButton.layer.cornerRadius = 2.f;
-    deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    deleteButton.layer.borderWidth = 1.f;
-    [deleteButton setTitle:@"删除下载" forState:UIControlStateNormal];
-    [deleteButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    [deleteButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-    [deleteButton addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:deleteButton];
-    _deleteButton = deleteButton;
+    UIButton *removeButton = [[UIButton alloc] init];
+    removeButton.clipsToBounds = YES;
+    removeButton.layer.cornerRadius = 2.f;
+    removeButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    removeButton.layer.borderWidth = 1.f;
+    [removeButton setTitle:@"Remove download" forState:UIControlStateNormal];
+    [removeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [removeButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+    [removeButton addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:removeButton];
+    _removeButton = removeButton;
     
     _progressView = [[UIProgressView alloc] init];
     _progressView.layer.cornerRadius = 2.f;
@@ -73,7 +73,7 @@
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-20);
     }];
-    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_removeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(_downloadButton.mas_height);
         make.top.mas_equalTo(_downloadButton.mas_bottom).mas_offset(10);
         make.left.mas_equalTo(_downloadButton.mas_left);
@@ -177,15 +177,15 @@
         case JCDownloadStatusWait:
         case JCDownloadStatusPause:
         case JCDownloadStatusUnknownError:
-            [self.downloadButton setTitle:@"开始下载" forState:UIControlStateNormal];
+            [self.downloadButton setTitle:@"Start download" forState:UIControlStateNormal];
             self.downloadButton.enabled = YES;
             break;
         case JCDownloadStatusDownloading:
-            [self.downloadButton setTitle:@"暂停下载" forState:UIControlStateNormal];
+            [self.downloadButton setTitle:@"Pause download" forState:UIControlStateNormal];
             self.downloadButton.enabled = YES;
             break;
         case JCDownloadStatusFinished:
-            [self.downloadButton setTitle:@"已下载" forState:UIControlStateNormal];
+            [self.downloadButton setTitle:@"Download finished" forState:UIControlStateNormal];
             self.downloadButton.enabled = NO;
             break;
     }

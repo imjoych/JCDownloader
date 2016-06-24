@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.title = @"下载列表";
+    self.title = @"Download List";
     
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
@@ -51,7 +51,7 @@
     
     CGFloat width = CGRectGetWidth(self.view.bounds) / 3.f - 16;
     UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, 52)];
-    [startButton setTitle:@"开始下载" forState:UIControlStateNormal];
+    [startButton setTitle:@"Start" forState:UIControlStateNormal];
     [startButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [startButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [startButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
@@ -59,7 +59,7 @@
     self.startButton = startButton;
     
     UIButton *stopButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, 52)];
-    [stopButton setTitle:@"暂停下载" forState:UIControlStateNormal];
+    [stopButton setTitle:@"Pause" forState:UIControlStateNormal];
     [stopButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [stopButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [stopButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
@@ -67,7 +67,7 @@
     self.stopButton = stopButton;
     
     UIButton *removeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, width, 52)];
-    [removeButton setTitle:@"删除下载" forState:UIControlStateNormal];
+    [removeButton setTitle:@"Remove" forState:UIControlStateNormal];
     [removeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [removeButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [removeButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
@@ -80,7 +80,7 @@
     self.toolBar.items = @[startItem, stopItem, removeItem];
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-    [button setTitle:@"大文件" forState:UIControlStateNormal];
+    [button setTitle:@"Big File" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [button addTarget:self action:@selector(enterLargeFileDownloadPage) forControlEvents:UIControlEventTouchUpInside];
@@ -89,7 +89,7 @@
     negativeSpacer.width = -10;
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, rightBarButtonItem];
     
-    [JCDownloadAgent sharedAgent].minFileSizeForProducingResumeData = 0;
+    [JCDownloadAgent sharedAgent].minFileSizeForAutoProducingResumeData = 0;
 }
 
 - (void)didReceiveMemoryWarning {

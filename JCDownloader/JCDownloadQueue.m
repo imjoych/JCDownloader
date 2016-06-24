@@ -101,9 +101,9 @@
     }
 }
 
-#pragma mark - 分组数据下载操作
+#pragma mark - Downloads operation with groupId
 
-- (void)startDownloadList:(NSArray *)downloadList
+- (void)startDownloadList:(NSArray<JCDownloadOperation *> *)downloadList
 {
     [downloadList enumerateObjectsUsingBlock:^(JCDownloadOperation *operation, NSUInteger idx, BOOL * _Nonnull stop) {
         [operation startDownload];
@@ -149,7 +149,7 @@
     [removeArray removeAllObjects];
 }
 
-- (NSArray *)downloadListWithGroupId:(NSString *)groupId
+- (NSArray<JCDownloadOperation *> *)downloadListWithGroupId:(NSString *)groupId
 {
     if (groupId.length < 1) {
         return self.operationList;

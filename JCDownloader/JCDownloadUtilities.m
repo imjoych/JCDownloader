@@ -72,13 +72,13 @@ static inline NSString *JCStringCCHashFunction(unsigned char *(function)(const v
     CGFloat kb = (CGFloat)fileSize / 1024;
     CGFloat mb = kb / 1024;
     CGFloat gb = mb / 1024;
-    if (fileSize < 1024) {// 小于1KB
+    if (fileSize < 1024) {// < 1KB
         return [NSString stringWithFormat:@"%@B", @(fileSize)];
-    } else if (mb < 1) {// 小于1MB
+    } else if (mb < 1) {// < 1MB
         return [NSString stringWithFormat:@"%.2fK", kb];
-    } else if (gb < 1) {// 小于1GB
+    } else if (gb < 1) {// < 1GB
         return [NSString stringWithFormat:@"%.2fM", mb];
-    } else { // 大于等于1GB
+    } else { // >= 1GB
         return [NSString stringWithFormat:@"%.2fG", gb];
     }
 }

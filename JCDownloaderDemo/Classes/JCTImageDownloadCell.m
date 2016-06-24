@@ -85,7 +85,7 @@ NSString *const JCTImageDownloadCellIdentifier = @"kJCTImageDownloadCellIdentifi
     if ([userInfo.allKeys containsObject:JCDownloadCompletionFilePathKey]) {
         [self reloadDownloadedImage];
     } else if ([userInfo.allKeys containsObject:JCDownloadCompletionErrorKey]) {
-        [self resetImage:[UIImage imageNamed:@"默认图"]];
+        [self resetImage:[UIImage imageNamed:@"default_loading_img"]];
     }
     [self resetProgressWithCompletedUnitCount:self.item.completedUnitCount
                                totalUnitCount:self.item.totalUnitCount];
@@ -93,7 +93,7 @@ NSString *const JCTImageDownloadCellIdentifier = @"kJCTImageDownloadCellIdentifi
 
 - (void)reloadDownloadedImage
 {
-    [self resetImage:[UIImage imageNamed:@"默认图"]];
+    [self resetImage:[UIImage imageNamed:@"default_loading_img"]];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSData *data = [NSData dataWithContentsOfFile:self.item.downloadFilePath];
         UIImage *image = [UIImage imageWithData:data];
@@ -103,7 +103,7 @@ NSString *const JCTImageDownloadCellIdentifier = @"kJCTImageDownloadCellIdentifi
                 self.item.imageCache = scaledImage;
                 [self resetImage:scaledImage];
             } else {
-                [self resetImage:[UIImage imageNamed:@"默认图"]];
+                [self resetImage:[UIImage imageNamed:@"default_loading_img"]];
             }
         });
     });
@@ -144,7 +144,7 @@ NSString *const JCTImageDownloadCellIdentifier = @"kJCTImageDownloadCellIdentifi
 
 - (void)setupSubviews
 {
-    _myImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"默认图"]];
+    _myImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default_loading_img"]];
     [self.contentView addSubview:_myImageView];
     [_myImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(10);

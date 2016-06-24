@@ -8,31 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
-/** 下载工具类 */
+/** Download utilities class. */
 @interface JCDownloadUtilities : NSObject
 
-/** 字符串MD5加密 */
+/** Md5 of string. */
 + (NSString *)md5WithString:(NSString *)string;
 
-/** 获取文件路径（NSCachesDirectory目录下）
- @param fileName 文件名
- @param folderName 文件夹名称（可为空）
- */
+/** Return file path (In NSCachesDirectory) with fileName and folderName. */
 + (NSString *)filePathWithFileName:(NSString *)fileName
                         folderName:(NSString *)folderName;
 
 #pragma mark - Size
 
-/** 计算文件大小 */
+/** Calculate size of file at filePath. */
 + (int64_t)fileSizeWithFilePath:(NSString *)filePath;
 
-/** 文件大小字符串 */
+/** Size string of file size which keep to two decimal places. */
 + (NSString *)sizeStringWithFileSize:(int64_t)fileSize;
 
-/** 设备剩余空间 */
+/** Device free space. */
 + (int64_t)deviceFreeSpace;
 
-/** 设备总空间 */
+/** Device total space. */
 + (int64_t)deviceTotalSpace;
 
 @end

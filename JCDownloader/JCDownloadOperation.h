@@ -8,68 +8,68 @@
 
 #import <Foundation/Foundation.h>
 
-/** 下载状态 */
+/** Download status. */
 typedef NS_ENUM(NSInteger, JCDownloadStatus) {
-    JCDownloadStatusWait,        //等待下载，默认值
-    JCDownloadStatusDownloading, //下载中
-    JCDownloadStatusPause,       //暂停下载
-    JCDownloadStatusFinished,    //下载完成
-    JCDownloadStatusUnknownError //下载出错
+    JCDownloadStatusWait,        ///< waiting for download.
+    JCDownloadStatusDownloading, ///< in the download.
+    JCDownloadStatusPause,       ///< download is paused.
+    JCDownloadStatusFinished,    ///< download is finished.
+    JCDownloadStatusUnknownError ///< download error occured.
 };
 
-/** 下载相关数据 */
+/** Download operation info Class. */
 @interface JCDownloadItem : NSObject
 
-@property (nonatomic, strong) NSString *downloadUrl;      //下载链接地址，不能为空
-@property (nonatomic, strong) NSString *downloadFilePath; //下载文件本地路径，不能为空
-@property (nonatomic, strong) NSString *downloadId;       //下载唯一标识，为空时自动生成
-@property (nonatomic, strong) NSString *groupId;          //下载分组标识
-@property (nonatomic, assign) JCDownloadStatus status;    //下载状态
-@property (nonatomic, assign) int64_t totalUnitCount;     //下载文件总大小
-@property (nonatomic, assign) int64_t completedUnitCount; //已下载文件大小
+@property (nonatomic, strong) NSString *downloadUrl;      ///< download link, can't be nil.
+@property (nonatomic, strong) NSString *downloadFilePath; ///< local path for file cache, can't be nil.
+@property (nonatomic, strong) NSString *downloadId;       ///< if nil, generated automatically by the downloadUrl.
+@property (nonatomic, strong) NSString *groupId;          ///< default is nil.
+@property (nonatomic, assign) JCDownloadStatus status;    ///< default is JCDownloadStatusWait.
+@property (nonatomic, assign) int64_t totalUnitCount;     ///< file size.
+@property (nonatomic, assign) int64_t completedUnitCount; ///< completed download size of file.
 
 @end
 
-FOUNDATION_EXPORT NSString *const JCDownloadProgressNotification;   //下载进度通知
-FOUNDATION_EXPORT NSString *const JCDownloadCompletionNotification; //下载完成通知
-FOUNDATION_EXPORT NSString *const JCDownloadIdKey;                  //下载Id Key，值为NSString对象
-FOUNDATION_EXPORT NSString *const JCDownloadProgressKey;            //下载进度Key，值为NSProgress对象
-FOUNDATION_EXPORT NSString *const JCDownloadCompletionFilePathKey;  //文件路径Key，值为NSURL对象
-FOUNDATION_EXPORT NSString *const JCDownloadCompletionErrorKey;     //下载出错Key，值为NSError对象
+FOUNDATION_EXPORT NSString *const JCDownloadProgressNotification;   ///< notification of download progress.
+FOUNDATION_EXPORT NSString *const JCDownloadCompletionNotification; ///< notification of download completion.
+FOUNDATION_EXPORT NSString *const JCDownloadIdKey;                  ///< download identifier key in notifications userInfo, instance type of the value is NSString.
+FOUNDATION_EXPORT NSString *const JCDownloadProgressKey;            ///< download progress key in JCDownloadProgressNotification userInfo, instance type of the value is NSProgress.
+FOUNDATION_EXPORT NSString *const JCDownloadCompletionFilePathKey;  ///< download completion file path key in JCDownloadCompletionNotification userInfo, instance type of the value is NSURL.
+FOUNDATION_EXPORT NSString *const JCDownloadCompletionErrorKey;     ///< download completion error key in JCDownloadCompletionNotification userInfo, instance type of the value is NSError.
 
-/** 文件下载进度Block回调 */
+/** Block of file download progress. */
 typedef void(^JCDownloadProgressBlock)(NSProgress *progress);
-/** 文件下载请求结束Block回调 */
+/** Block of file download completion. */
 typedef void(^JCDownloadCompletionBlock)(NSURL *filePath, NSError *error);
 
-/** 文件下载类 */
+/** Download operation Class. */
 @interface JCDownloadOperation : NSObject
 
 @property (nonatomic, strong, readonly) JCDownloadItem *item;
 @property (nonatomic, copy, readonly) JCDownloadProgressBlock progressBlock;
 @property (nonatomic, copy, readonly) JCDownloadCompletionBlock completionBlock;
 
-/** 实例化对象 */
+/** Instance of JCDownloadOperation with item. */
 + (instancetype)operationWithItem:(JCDownloadItem *)item;
 
-/** 开始下载 */
+/** Start download. */
 - (void)startDownload;
 
-/** 开始下载并初始化Block回调 */
+/** Start download with progressBlock and completionBlock. */
 - (void)startWithProgressBlock:(JCDownloadProgressBlock)progressBlock
                completionBlock:(JCDownloadCompletionBlock)completionBlock;
 
-/** 重置Block回调 */
+/** Reset progressBlock and completionBlock. */
 - (void)resetProgressBlock:(JCDownloadProgressBlock)progressBlock
            completionBlock:(JCDownloadCompletionBlock)completionBlock;
 
-/** 暂停下载 */
+/** Pause download. */
 - (void)pauseDownload;
 
-/** 结束下载（下载完成或异常结束）*/
+/** Finish download (download is completed or error occured). */
 - (void)finishDownload;
 
-/** 删除下载（停止请求并删除文件）*/
+/** Remove download (stop download operation and remove download files). */
 - (void)removeDownload;
 
 @end

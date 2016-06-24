@@ -37,7 +37,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     if (self = [super init]) {
         _tasksDict = [NSMutableDictionary dictionary];
         _manager = [AFHTTPSessionManager manager];
-        _minFileSizeForProducingResumeData = 2 * 1024 * 1024;
+        _minFileSizeForAutoProducingResumeData = 2 * 1024 * 1024;
         _pauseAndResumeDict = [NSMutableDictionary dictionary];
         [self removeInvalidTempFiles];
     }
@@ -66,7 +66,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
 
 - (void)removeDownloadFile:(JCDownloadItem *)downloadItem
 {
-    [self removeDownloadFile:downloadItem isTaskCancelled:NO];
+    [self removeDownloadFile:downloadItem isDownloading:NO];
 }
 
 #pragma mark - JCDownloadOperationProtocol
@@ -140,7 +140,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     @synchronized(self.tasksDict) {
         [self.tasksDict removeObjectForKey:key];
     }
-    [self removeDownloadFile:operation.item isTaskCancelled:YES];
+    [self removeDownloadFile:operation.item isDownloading:YES];
 }
 
 #pragma mark - download operation
@@ -187,7 +187,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     }
 }
 
-/** 删除失效的临时文件 */
+/** Remove invalid download temp files. */
 - (void)removeInvalidTempFiles
 {
     dispatch_async(jc_download_agent_file_operation_queue(), ^{
@@ -202,18 +202,18 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     });
 }
 
-/** 删除下载文件
- * @param isTaskCancelled 是否为取消下载任务
+/** Remove download file.
+ * @param isDownloading Is download task in progress or not.
  */
 - (void)removeDownloadFile:(JCDownloadItem *)downloadItem
-           isTaskCancelled:(BOOL)isTaskCancelled
+             isDownloading:(BOOL)isDownloading
 {
     dispatch_async(jc_download_agent_file_operation_queue(), ^{
         if ([[NSFileManager defaultManager] fileExistsAtPath:downloadItem.downloadFilePath]) {
             [[NSFileManager defaultManager] removeItemAtPath:downloadItem.downloadFilePath error:nil];
         }
     });
-    if (isTaskCancelled) {
+    if (isDownloading) {
         [self removeResumeData:downloadItem];
     } else {
         [self removeTempFileAndResumeData:downloadItem];
@@ -298,21 +298,24 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     
     NSData *resumeData = [NSData dataWithContentsOfFile:resumeDataPath];
     NSDictionary *resumeDictionary = [self resumeDictionaryWithResumeData:resumeData];
-    //下载的临时文件是否存在
+    //Check is download temp file exists or not
     NSString *tempFilePath = [self tempFilePathWithResumeDictionary:resumeDictionary];
     if (![[NSFileManager defaultManager] fileExistsAtPath:tempFilePath]) {
         return nil;
     }
-    //更新resumeData下载信息
+    
+    //Update resumeData info.
     BOOL isResumeDataChanged = NO;
     NSMutableDictionary *newResumeDictionary = [NSMutableDictionary dictionaryWithDictionary:resumeDictionary];
-    //下载链接
+    
+    //Check download url
     NSString *downloadUrl = [resumeDictionary objectForKey:@"NSURLSessionDownloadURL"];
     if (![downloadUrl isEqualToString:downloadItem.downloadUrl]) {
         isResumeDataChanged = YES;
         newResumeDictionary[@"NSURLSessionDownloadURL"] = downloadItem.downloadUrl;
     }
-    //下载进度
+    
+    //Check resume bytes received
     int64_t bytesReceived = [[resumeDictionary objectForKey:@"NSURLSessionResumeBytesReceived"] longLongValue];
     int64_t fileSize = [JCDownloadUtilities fileSizeWithFilePath:tempFilePath];
     if (bytesReceived < fileSize) {
@@ -331,7 +334,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     return resumeData;
 }
 
-/** resumeData序列化 */
+/** ResumeData serialization. */
 - (NSDictionary *)resumeDictionaryWithResumeData:(NSData *)resumeData
 {
     if (resumeData.length < 1) {
@@ -343,7 +346,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
                                                        error:nil];
 }
 
-/** 下载的临时文件路径 */
+/** Download temp file path. */
 - (NSString *)tempFilePathWithResumeDictionary:(NSDictionary *)resumeDictionary
 {
     if (resumeDictionary.count < 1) {
@@ -356,12 +359,12 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     return [NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName];
 }
 
-#pragma mark - pause and producing resume data
+#pragma mark - pause download and produce resume data
 
-/** 暂停操作生成resumeData后重新开始下载 */
+/** Pause download to produce resumeData, after that restart the download. */
 - (void)pauseAndResumeOperation:(JCDownloadOperation *)operation
 {
-    if (operation.item.totalUnitCount < self.minFileSizeForProducingResumeData) {
+    if (operation.item.totalUnitCount < self.minFileSizeForAutoProducingResumeData) {
         return;
     }
     NSString *resumeDataPath = [self resumeDataPath:operation.item];

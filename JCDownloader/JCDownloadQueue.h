@@ -11,32 +11,33 @@
 
 @class JCDownloadOperation;
 
-/** 文件下载队列类 */
-@interface JCDownloadQueue : NSObject<JCDownloadOperationProtocol>
+/** File download queue class. */
+@interface JCDownloadQueue : NSObject <JCDownloadOperationProtocol>
 
-@property (nonatomic, assign) NSInteger maxConcurrentDownloadCount; //最大并发下载数量，默认为10。
-@property (nonatomic, assign, readonly) NSInteger currentDownloadCount; //正在下载数量
+@property (nonatomic, assign) NSInteger maxConcurrentDownloadCount; ///< max concurrent download count, default is 10.
+@property (nonatomic, assign, readonly) NSInteger currentDownloadCount; ///< current download count.
 
+/** Singleton instance of JCDownloadQueue. */
 + (instancetype)sharedQueue;
 
-#pragma mark - 分组数据下载操作
+#pragma mark - Downloads operation with groupId
 
-/** 开始一组下载请求 */
-- (void)startDownloadList:(NSArray *)downloadList;
+/** Start download operation with a group of JCDownloadOperation. */
+- (void)startDownloadList:(NSArray<JCDownloadOperation *> *)downloadList;
 
-/** 开始对应分组（groupId为空时开始全部）文件下载请求 */
+/** Start downloads for groupId (download all when groupId is nil). */
 - (void)startDownloadsWithGroupId:(NSString *)groupId;
 
-/** 暂停对应分组（groupId为空时暂停全部）文件下载请求 */
+/** Pause downloads for groupId (pause all when groupId is nil). */
 - (void)pauseDownloadsWithGroupId:(NSString *)groupId;
 
-/** 删除对应分组（groupId为空时删除全部）下载请求并删除文件 */
+/** Remove downloads for groupId (remove all when groupId is nil). */
 - (void)removeDownloadsWithGroupId:(NSString *)groupId;
 
-/** 返回对应分组（groupId为空时返回全部）文件下载请求列表 */
-- (NSArray *)downloadListWithGroupId:(NSString *)groupId;
+/** Returns a group of downloads for groupId (return all when groupId is nil). */
+- (NSArray<JCDownloadOperation *> *)downloadListWithGroupId:(NSString *)groupId;
 
-/** 返回已加入队列的下载请求 */
+/** Returns download operation with downloadId and groupId, returns nil if not start at all. */
 - (JCDownloadOperation *)downloadOperation:(NSString *)downloadId
                                    groupId:(NSString *)groupId;
 
