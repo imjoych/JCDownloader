@@ -4,23 +4,68 @@ A useful iOS downloader framework based on [AFNetworking](https://github.com/AFN
 ## Features
 This framework supports the development of iOS 7.0+ in ARC.
 
-* Files download (breakpoint downloading supported).
+* Single file download start/pause/remove operation and so on.
+* File list downloads with groupId.
+* Breakpoint downloading supported.
 
-
-### Download
+### Single file download
 ```objective-c
-- (void)startDownloadOperation
-{
-	JCDownloadItem *downloadItem = [[JCDownloadItem alloc] init];
-    downloadItem.downloadUrl = @"download url";
-    downloadItem.downloadFilePath = @"download file path";
-    self.operation = [JCDownloadOperation operationWithItem:downloadItem];
-    [self.operation startWithProgressBlock:^(NSProgress *progress) {
-        //update progress
-    } completionBlock:^(NSURL *filePath, NSError *error) {
-        //download operation completion, do something
-    }];
+JCDownloadItem *downloadItem = [[JCDownloadItem alloc] init];
+downloadItem.downloadUrl = @"download url";
+downloadItem.downloadFilePath = @"download file path";
+self.operation = [JCDownloadOperation operationWithItem:downloadItem];
+[self.operation startWithProgressBlock:^(NSProgress *progress) {
+    //update progress
+} completionBlock:^(NSURL *filePath, NSError *error) {
+    //download operation completion, do something
+}];
+```
+
+```objective-c
+[self.operation resetProgressBlock:^(NSProgress *progress) {
+    //update progress
+} completionBlock:^(NSURL *filePath, NSError *error) {
+    //download operation completion, do something
+}];
+```
+
+```objective-c
+[self.operation pauseDownload];
+```
+
+```objective-c
+[self.operation removeDownload];
+```
+
+### File list downloads
+
+```objective-c
+extern NSString *const JCTImageDownloadGroupId;
+```
+
+```objective-c
+NSMutableArray *downloadList = [NSMutableArray array];
+for (NSInteger index = 0; index < [self urlList].count; index++) {
+    JCTImageDownloadItem *item = [[JCTImageDownloadItem alloc] init];
+    item.groupId = JCTImageDownloadGroupId;
+    item.downloadUrl = [self urlList][index];
+    item.downloadFilePath = [JCDownloadUtilities filePathWithFileName:[item.downloadUrl lastPathComponent] folderName:@"downloadImages"];
+    JCDownloadOperation *operation = [JCDownloadOperation operationWithItem:item];
+    [downloadList addObject:operation];
 }
+[[JCDownloadQueue sharedQueue] startDownloadList:downloadList];
+```
+
+```objective-c
+[[JCDownloadQueue sharedQueue] startDownloadsWithGroupId:JCTImageDownloadGroupId];
+```
+
+```objective-c
+[[JCDownloadQueue sharedQueue] pauseDownloadsWithGroupId:JCTImageDownloadGroupId];
+```
+
+```objective-c
+[[JCDownloadQueue sharedQueue] removeDownloadsWithGroupId:JCTImageDownloadGroupId];
 ```
 
 ## CocoaPods
