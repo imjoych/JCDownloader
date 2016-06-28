@@ -68,6 +68,22 @@ for (NSInteger index = 0; index < [self urlList].count; index++) {
 [[JCDownloadQueue sharedQueue] removeDownloadsWithGroupId:JCTImageDownloadGroupId];
 ```
 
+### Downloads notifications
+```objective-c
+FOUNDATION_EXPORT NSString *const JCDownloadIdKey; ///< download identifier key in notifications userInfo, instance type of the value is NSString.
+```
+
+```objective-c
+FOUNDATION_EXPORT NSString *const JCDownloadProgressNotification; ///< notification of download progress.
+FOUNDATION_EXPORT NSString *const JCDownloadProgressKey; ///< download progress key in JCDownloadProgressNotification userInfo, instance type of the value is NSProgress.
+```
+
+```objective-c
+FOUNDATION_EXPORT NSString *const JCDownloadCompletionNotification; ///< notification of download completion.
+FOUNDATION_EXPORT NSString *const JCDownloadCompletionFilePathKey; ///< download completion file path key in JCDownloadCompletionNotification userInfo, instance type of the value is NSURL.
+FOUNDATION_EXPORT NSString *const JCDownloadCompletionErrorKey; ///< download completion error key in JCDownloadCompletionNotification userInfo, instance type of the value is NSError.
+```
+
 ## CocoaPods
 To integrate JCDownloader into your iOS project, specify it in your Podfile:
     
