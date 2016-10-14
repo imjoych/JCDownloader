@@ -20,7 +20,7 @@
 		236457131D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2364570E1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m */; };
 		236457141D1BCA0D004B8E41 /* JCTImageDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 236457101D1BCA0D004B8E41 /* JCTImageDownloadCell.m */; };
 		236457151D1BCA0D004B8E41 /* JCTImageDownloadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 236457121D1BCA0D004B8E41 /* JCTImageDownloadItem.m */; };
-		488E1D9147F931561C715E6B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D38B591A6023338CC324831 /* libPods.a */; };
+		3789979B8A9B2957D0A06831 /* libPods-JCDownloaderDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CC61AFED3C8D15EE9AD20A4 /* libPods-JCDownloaderDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,9 +51,9 @@
 		236457111D1BCA0D004B8E41 /* JCTImageDownloadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTImageDownloadItem.h; sourceTree = "<group>"; };
 		236457121D1BCA0D004B8E41 /* JCTImageDownloadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTImageDownloadItem.m; sourceTree = "<group>"; };
 		236457161D1BCB4D004B8E41 /* JCDownloaderDemo-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JCDownloaderDemo-prefix.pch"; sourceTree = "<group>"; };
-		6D38B591A6023338CC324831 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A2DABA7C5D6D1FC49CD40D37 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		AC63BE219D6B25E0EA49DBF4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3C40E9E8F154BB7358B3AA28 /* Pods-JCDownloaderDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JCDownloaderDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-JCDownloaderDemo/Pods-JCDownloaderDemo.release.xcconfig"; sourceTree = "<group>"; };
+		6AA657B4C559949AECEFA6F5 /* Pods-JCDownloaderDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JCDownloaderDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JCDownloaderDemo/Pods-JCDownloaderDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		7CC61AFED3C8D15EE9AD20A4 /* libPods-JCDownloaderDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JCDownloaderDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				488E1D9147F931561C715E6B /* libPods.a in Frameworks */,
+				3789979B8A9B2957D0A06831 /* libPods-JCDownloaderDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,8 +74,8 @@
 				236456F21D1BC756004B8E41 /* JCDownloader */,
 				236456DC1D1BC5B8004B8E41 /* JCDownloaderDemo */,
 				236456CD1D1BC578004B8E41 /* Products */,
-				5FCB95AF7A6B29ACBD24733A /* Pods */,
-				639CE26D120DFB8A3BB82105 /* Frameworks */,
+				42C0E2C2278F0EB6EAF0623B /* Pods */,
+				C4A223583B4B45F7437DDF10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,19 +143,19 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		5FCB95AF7A6B29ACBD24733A /* Pods */ = {
+		42C0E2C2278F0EB6EAF0623B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A2DABA7C5D6D1FC49CD40D37 /* Pods.debug.xcconfig */,
-				AC63BE219D6B25E0EA49DBF4 /* Pods.release.xcconfig */,
+				6AA657B4C559949AECEFA6F5 /* Pods-JCDownloaderDemo.debug.xcconfig */,
+				3C40E9E8F154BB7358B3AA28 /* Pods-JCDownloaderDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		639CE26D120DFB8A3BB82105 /* Frameworks */ = {
+		C4A223583B4B45F7437DDF10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6D38B591A6023338CC324831 /* libPods.a */,
+				7CC61AFED3C8D15EE9AD20A4 /* libPods-JCDownloaderDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -167,12 +167,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 236456EF1D1BC5B8004B8E41 /* Build configuration list for PBXNativeTarget "JCDownloaderDemo" */;
 			buildPhases = (
-				8C1DA44C4A992F45D8E9182D /* Check Pods Manifest.lock */,
+				2D4467FA0196A6A0D89870D3 /* [CP] Check Pods Manifest.lock */,
 				236456D71D1BC5B8004B8E41 /* Sources */,
 				236456D81D1BC5B8004B8E41 /* Frameworks */,
 				236456D91D1BC5B8004B8E41 /* Resources */,
-				024D0FCD72934CDD73E2D209 /* Embed Pods Frameworks */,
-				876D5619AD7F84CA0C49AC8F /* Copy Pods Resources */,
+				D99961282DADF659DB527EBE /* [CP] Embed Pods Frameworks */,
+				6247019F7EB841C3350C4CA5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,49 +229,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		024D0FCD72934CDD73E2D209 /* Embed Pods Frameworks */ = {
+		2D4467FA0196A6A0D89870D3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		876D5619AD7F84CA0C49AC8F /* Copy Pods Resources */ = {
+		6247019F7EB841C3350C4CA5 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JCDownloaderDemo/Pods-JCDownloaderDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C1DA44C4A992F45D8E9182D /* Check Pods Manifest.lock */ = {
+		D99961282DADF659DB527EBE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JCDownloaderDemo/Pods-JCDownloaderDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -408,7 +408,7 @@
 		};
 		236456F01D1BC5B8004B8E41 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2DABA7C5D6D1FC49CD40D37 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 6AA657B4C559949AECEFA6F5 /* Pods-JCDownloaderDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -424,7 +424,7 @@
 		};
 		236456F11D1BC5B8004B8E41 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC63BE219D6B25E0EA49DBF4 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 3C40E9E8F154BB7358B3AA28 /* Pods-JCDownloaderDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
