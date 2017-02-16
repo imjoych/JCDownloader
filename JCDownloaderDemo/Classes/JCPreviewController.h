@@ -1,9 +1,9 @@
 //
 //  JCPreviewController.h
-//  xhyq
+//  JCDownloader
 //
 //  Created by ChenJianjun on 2017/2/15.
-//  Copyright © 2017年 xhyq. All rights reserved.
+//  Copyright © 2017年 Boych<https://github.com/Boych> All rights reserved.
 //
 
 #import <QuickLook/QuickLook.h>
