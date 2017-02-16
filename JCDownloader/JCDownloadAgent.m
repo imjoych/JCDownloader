@@ -190,16 +190,14 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
 /** Remove invalid download temp files. */
 - (void)removeInvalidTempFiles
 {
-    dispatch_async(jc_download_agent_file_operation_queue(), ^{
-        NSString *tempPath = NSTemporaryDirectory();
-        NSArray *tempFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:tempPath error:nil];
-        for (NSString *fileName in tempFiles) {
-            NSString *filePath = [tempPath stringByAppendingPathComponent:fileName];
-            if ([JCDownloadUtilities fileSizeWithFilePath:filePath] == 0) {
-                [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
-            }
+    NSString *tempPath = NSTemporaryDirectory();
+    NSArray *tempFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:tempPath error:nil];
+    for (NSString *fileName in tempFiles) {
+        NSString *filePath = [tempPath stringByAppendingPathComponent:fileName];
+        if ([JCDownloadUtilities fileSizeWithFilePath:filePath] == 0) {
+            [[NSFileManager defaultManager] removeItemAtPath:filePath error:nil];
         }
-    });
+    }
 }
 
 /** Remove download file.
