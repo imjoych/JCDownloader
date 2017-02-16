@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'JCDownloader'
-  s.version      = '0.1.2'
+  s.version      = '0.1.5'
   s.license      = 'MIT'
   s.summary      = 'A useful iOS download framework based on AFNetworking.'
   s.homepage     = 'https://github.com/Boych/JCDownloader'
