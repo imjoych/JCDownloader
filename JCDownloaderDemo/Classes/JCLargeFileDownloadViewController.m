@@ -10,6 +10,7 @@
 #import "JCDownloadOperation.h"
 #import "JCDownloadQueue.h"
 #import "JCDownloadUtilities.h"
+#import "UIViewController+JCPreview.h"
 
 @interface JCLargeFileDownloadViewController ()
 
@@ -105,7 +106,8 @@
 {
     JCDownloadItem *downloadItem = [[JCDownloadItem alloc] init];
     downloadItem.groupId = @"largeFileDownloadGroupId";
-    downloadItem.downloadUrl = @"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.6.dmg";
+    downloadItem.downloadUrl = @"http://wwwimages.adobe.com/content/dam/acom/en/fast-facts/pdfs/fast-facts.pdf";
+//    downloadItem.downloadUrl = @"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.6.dmg";
     downloadItem.downloadFilePath = [JCDownloadUtilities filePathWithFileName:[downloadItem.downloadUrl lastPathComponent] folderName:@"downloadFiles"];
     self.downloadOperation = [JCDownloadOperation operationWithItem:downloadItem];
     @weakify(self);
@@ -138,6 +140,9 @@
                 @strongify(self);
                 [self resetProgressWithCompletedUnitCount:self.downloadOperation.item.completedUnitCount
                                            totalUnitCount:self.downloadOperation.item.totalUnitCount];
+                [self jc_openPDFWithURL:filePath title:@"Adobe Fast facts" completion:^(BOOL success) {
+                    
+                }];
             }];
         }
             break;

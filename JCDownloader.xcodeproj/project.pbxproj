@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23074C061E55481600975AC9 /* UIViewController+JCPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 23074C031E55481600975AC9 /* UIViewController+JCPreview.m */; };
+		23074C071E55481600975AC9 /* JCPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23074C051E55481600975AC9 /* JCPreviewController.m */; };
 		236456DF1D1BC5B8004B8E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456DE1D1BC5B8004B8E41 /* main.m */; };
 		236456E21D1BC5B8004B8E41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456E11D1BC5B8004B8E41 /* AppDelegate.m */; };
 		236456E51D1BC5B8004B8E41 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 236456E41D1BC5B8004B8E41 /* ViewController.m */; };
@@ -24,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23074C021E55481600975AC9 /* UIViewController+JCPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+JCPreview.h"; sourceTree = "<group>"; };
+		23074C031E55481600975AC9 /* UIViewController+JCPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JCPreview.m"; sourceTree = "<group>"; };
+		23074C041E55481600975AC9 /* JCPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCPreviewController.h; sourceTree = "<group>"; };
+		23074C051E55481600975AC9 /* JCPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCPreviewController.m; sourceTree = "<group>"; };
 		236456DB1D1BC5B8004B8E41 /* JCDownloaderDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JCDownloaderDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		236456DE1D1BC5B8004B8E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		236456E01D1BC5B8004B8E41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -133,6 +139,10 @@
 		2364570C1D1BCA0D004B8E41 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				23074C021E55481600975AC9 /* UIViewController+JCPreview.h */,
+				23074C031E55481600975AC9 /* UIViewController+JCPreview.m */,
+				23074C041E55481600975AC9 /* JCPreviewController.h */,
+				23074C051E55481600975AC9 /* JCPreviewController.m */,
 				2364570D1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.h */,
 				2364570E1D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m */,
 				2364570F1D1BCA0D004B8E41 /* JCTImageDownloadCell.h */,
@@ -194,6 +204,8 @@
 				TargetAttributes = {
 					236456DA1D1BC5B8004B8E41 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 6M6YBBYHVY;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -281,11 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23074C061E55481600975AC9 /* UIViewController+JCPreview.m in Sources */,
 				236456FE1D1BC756004B8E41 /* JCDownloadOperation.m in Sources */,
 				236456FD1D1BC756004B8E41 /* JCDownloadAgent.m in Sources */,
 				236456E51D1BC5B8004B8E41 /* ViewController.m in Sources */,
 				236457141D1BCA0D004B8E41 /* JCTImageDownloadCell.m in Sources */,
 				236456E21D1BC5B8004B8E41 /* AppDelegate.m in Sources */,
+				23074C071E55481600975AC9 /* JCPreviewController.m in Sources */,
 				236456FF1D1BC756004B8E41 /* JCDownloadQueue.m in Sources */,
 				236457151D1BCA0D004B8E41 /* JCTImageDownloadItem.m in Sources */,
 				236457131D1BCA0D004B8E41 /* JCLargeFileDownloadViewController.m in Sources */,
@@ -413,6 +427,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6M6YBBYHVY;
 				GCC_PREFIX_HEADER = "${SRCROOT}/JCDownloaderDemo/JCDownloaderDemo-prefix.pch";
 				INFOPLIST_FILE = JCDownloaderDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -429,6 +444,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6M6YBBYHVY;
 				GCC_PREFIX_HEADER = "${SRCROOT}/JCDownloaderDemo/JCDownloaderDemo-prefix.pch";
 				INFOPLIST_FILE = JCDownloaderDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
