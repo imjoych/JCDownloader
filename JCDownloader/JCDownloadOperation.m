@@ -22,8 +22,8 @@
 
 @end
 
-NSString *const JCDownloadProgressNotification = @"kJCDownloadProgressNotification";
-NSString *const JCDownloadCompletionNotification = @"kJCDownloadCompletionNotification";
+NSNotificationName const JCDownloadProgressNotification = @"kJCDownloadProgressNotification";
+NSNotificationName const JCDownloadCompletionNotification = @"kJCDownloadCompletionNotification";
 NSString *const JCDownloadIdKey = @"kJCDownloadIdKey";
 NSString *const JCDownloadProgressKey = @"kJCDownloadProgressKey";
 NSString *const JCDownloadCompletionFilePathKey = @"kJCDownloadCompletionFilePathKey";

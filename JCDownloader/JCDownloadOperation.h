@@ -30,8 +30,8 @@ typedef NS_ENUM(NSInteger, JCDownloadStatus) {
 
 @end
 
-FOUNDATION_EXPORT NSString *const JCDownloadProgressNotification;   ///< notification of download progress.
-FOUNDATION_EXPORT NSString *const JCDownloadCompletionNotification; ///< notification of download completion.
+FOUNDATION_EXPORT NSNotificationName const JCDownloadProgressNotification;   ///< notification of download progress.
+FOUNDATION_EXPORT NSNotificationName const JCDownloadCompletionNotification; ///< notification of download completion.
 FOUNDATION_EXPORT NSString *const JCDownloadIdKey;                  ///< download identifier key in notifications userInfo, instance type of the value is NSString.
 FOUNDATION_EXPORT NSString *const JCDownloadProgressKey;            ///< download progress key in JCDownloadProgressNotification userInfo, instance type of the value is NSProgress.
 FOUNDATION_EXPORT NSString *const JCDownloadCompletionFilePathKey;  ///< download completion file path key in JCDownloadCompletionNotification userInfo, instance type of the value is NSURL.
