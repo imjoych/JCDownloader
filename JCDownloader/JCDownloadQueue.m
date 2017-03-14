@@ -85,6 +85,11 @@
         operation.item.status = JCDownloadStatusFinished;
     }
     [[JCDownloadAgent sharedAgent] finishDownload:operation];
+    if (operation.item.status == JCDownloadStatusUnknownError) {
+        @synchronized(self.operationList) {
+            [self.operationList removeObject:operation];
+        }
+    }
     if (self.currentDownloadCount < self.maxConcurrentDownloadCount) {
         [self startNextDownload];
     }
