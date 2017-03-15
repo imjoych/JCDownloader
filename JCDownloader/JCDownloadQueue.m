@@ -52,6 +52,7 @@
     }
     
     if (self.currentDownloadCount >= self.maxConcurrentDownloadCount) {
+        operation.item.status = JCDownloadStatusWait;
         return;
     }
     if (operation.item.status == JCDownloadStatusDownloading) {
