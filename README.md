@@ -92,8 +92,8 @@ To integrate JCDownloader into your iOS project, specify it in your Podfile:
 ##Contacts
 If you have any questions or suggestions about the framework, please E-mail to contact me.
 
-Author: [Boych](https://github.com/Boych)	
-E-mail: ioschen@foxmail.com
+Author: [Joych](https://github.com/imjoych)	
+E-mail: imjoych@gmail.com
 
 ## License
-JCDownloader is released under the [MIT License](https://github.com/Boych/JCDownloader/blob/master/LICENSE).
+JCDownloader is released under the [MIT License](https://github.com/imjoych/JCDownloader/blob/master/LICENSE).
