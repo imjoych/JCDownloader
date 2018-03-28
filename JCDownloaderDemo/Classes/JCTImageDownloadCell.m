@@ -124,22 +124,28 @@ NSString *const JCTImageDownloadCellIdentifier = @"kJCTImageDownloadCellIdentifi
 - (void)resetProgressWithCompletedUnitCount:(int64_t)completedUnitCount
                              totalUnitCount:(int64_t)totalUnitCount
 {
-    if (totalUnitCount > 0) {
-        [self resetProgress:(CGFloat)completedUnitCount/totalUnitCount];
-    } else {
-        [self resetProgress:0];
-    }
-    self.progressLabel.text = [NSString stringWithFormat:@"%@ / %@", [JCDownloadUtilities sizeStringWithFileSize:completedUnitCount], [JCDownloadUtilities sizeStringWithFileSize:totalUnitCount]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (totalUnitCount > 0) {
+            [self resetProgress:(CGFloat)completedUnitCount/totalUnitCount];
+        } else {
+            [self resetProgress:0];
+        }
+        self.progressLabel.text = [NSString stringWithFormat:@"%@ / %@", [JCDownloadUtilities sizeStringWithFileSize:completedUnitCount], [JCDownloadUtilities sizeStringWithFileSize:totalUnitCount]];
+    });
 }
 
 - (void)resetProgress:(CGFloat)progress
 {
-    [self.progressView setProgress:progress];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.progressView setProgress:progress];
+    });
 }
 
 - (void)resetImage:(UIImage *)image
 {
-    self.myImageView.image = image;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.myImageView.image = image;
+    });
 }
 
 - (void)setupSubviews
