@@ -69,6 +69,18 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     [self removeDownloadFile:downloadItem isDownloading:NO];
 }
 
+- (void)setSecurityPolicyWithSSLPinningMode:(JCDownloadSSLPinningMode)SSLPinningMode pinnedCertificates:(NSSet<NSData *> *)pinnedCertificates allowInvalidCertificates:(BOOL)allowInvalidCertificates validatesDomainName:(BOOL)validatesDomainName
+{
+    AFSSLPinningMode pinningMode = (AFSSLPinningMode)SSLPinningMode;
+    if (pinnedCertificates && pinningMode != AFSSLPinningModeNone) {
+        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:pinningMode];
+        securityPolicy.pinnedCertificates = pinnedCertificates;
+        securityPolicy.allowInvalidCertificates = allowInvalidCertificates;
+        securityPolicy.validatesDomainName = validatesDomainName;
+        self.manager.securityPolicy = securityPolicy;
+    }
+}
+
 #pragma mark - JCDownloadOperationProtocol
 
 - (void)startDownload:(JCDownloadOperation *)operation
