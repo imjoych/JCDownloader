@@ -199,7 +199,7 @@
 		236456C31D1BC578004B8E41 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = JC;
+				CLASSPREFIX = JCDownload;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Joych<https://github.com/imjoych>";
 				TargetAttributes = {
