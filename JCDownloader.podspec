@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'JCDownloader'
-  s.version      = '1.0.0'
+  s.version      = '1.0.2'
   s.license      = 'MIT'
   s.summary      = 'A useful iOS download framework based on AFNetworking.'
   s.homepage     = 'https://github.com/imjoych/JCDownloader'
@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.dependency 'AFNetworking', '~> 3.1.0'
+  s.dependency 'AFNetworking', '~> 3.2.0'
 
 end
