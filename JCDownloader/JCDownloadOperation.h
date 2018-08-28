@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, JCDownloadStatus) {
 @property (nonatomic, assign) JCDownloadStatus status;    ///< default is JCDownloadStatusWait.
 @property (nonatomic, assign) int64_t totalUnitCount;     ///< file size.
 @property (nonatomic, assign) int64_t completedUnitCount; ///< completed download size of file.
+@property (nonatomic, strong) NSString *tempFileName;     ///< name of the download temporary file, which will be created automatically, or you can define it if the file has not been downloaded and should move from other directory to NSTemporaryDirectory().
 
 @end
 

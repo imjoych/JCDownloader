@@ -36,6 +36,16 @@ typedef NS_ENUM(NSUInteger, JCDownloadSSLPinningMode) {
  */
 - (void)removeDownloadFile:(JCDownloadItem *)downloadItem;
 
+/** Create resume data.
+ *  @param item download operation info. You can create resume data if the file has not been downloaded and should move from other directory to NSTemporaryDirectory().
+ */
+- (void)createResumeDataWithItem:(JCDownloadItem *)item;
+
+/** Returns temp file path.
+ *  @param tempFileName name of the download temporary file.
+ */
+- (NSString *)tempFilePathWithFileName:(NSString *)tempFileName;
+
 /**
  * Set security policy for HTTPS.
  * @param SSLPinningMode The criteria by which server trust should be evaluated against the pinned SSL certificates.

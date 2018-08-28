@@ -74,6 +74,38 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     [self removeDownloadFile:downloadItem isDownloading:NO];
 }
 
+- (void)createResumeDataWithItem:(JCDownloadItem *)item
+{
+    if (!item || !item.downloadUrl || !item.tempFileName) {
+        return;
+    }
+    NSString *resumeDataPath = [self resumeDataPath:item];
+    if (resumeDataPath.length < 1 || [[NSFileManager defaultManager] fileExistsAtPath:resumeDataPath]) {
+        return;
+    }
+    NSMutableDictionary *resumeDictionary = [NSMutableDictionary dictionary];
+    resumeDictionary[@"NSURLSessionResumeInfoTempFileName"] = item.tempFileName;
+    resumeDictionary[@"NSURLSessionDownloadURL"] = item.downloadUrl;
+    NSString *tempFilePath = [self tempFilePathWithFileName:item.tempFileName];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:tempFilePath]) {
+        int64_t fileSize = [JCDownloadUtilities fileSizeWithFilePath:tempFilePath];
+        if (fileSize > 0) {
+            resumeDictionary[@"NSURLSessionResumeBytesReceived"] = @(fileSize);
+        }
+    }
+    NSError *error;
+    NSData *resumeData = [NSPropertyListSerialization dataWithPropertyList:resumeDictionary format:NSPropertyListXMLFormat_v1_0 options:NSPropertyListImmutable error:&error];
+    if (!error && resumeData) {
+        [self saveResumeData:resumeData
+                downloadItem:item];
+    }
+}
+
+- (NSString *)tempFilePathWithFileName:(NSString *)tempFileName
+{
+    return [NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName];
+}
+
 - (void)setSecurityPolicyWithSSLPinningMode:(JCDownloadSSLPinningMode)SSLPinningMode pinnedCertificates:(NSSet<NSData *> *)pinnedCertificates allowInvalidCertificates:(BOOL)allowInvalidCertificates validatesDomainName:(BOOL)validatesDomainName
 {
     AFSSLPinningMode pinningMode = (AFSSLPinningMode)SSLPinningMode;
@@ -394,7 +426,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     if (tempFileName.length < 1) {
         return nil;
     }
-    return [NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName];
+    return [self tempFilePathWithFileName:tempFileName];
 }
 
 #pragma mark - pause download and produce resume data
