@@ -10,7 +10,9 @@
 #import "JCDownloadOperation.h"
 #import "JCDownloadAgent.h"
 
-@interface JCDownloadQueue ()
+@interface JCDownloadQueue () {
+    dispatch_queue_t _dataQueue;
+}
 
 @property (nonatomic, assign) NSInteger currentDownloadCount;
 @property (nonatomic, strong) NSMutableArray *operationList;
@@ -24,6 +26,7 @@
     if (self = [super init]) {
         _maxConcurrentDownloadCount = 10;
         _operationList = [NSMutableArray array];
+        _dataQueue = dispatch_queue_create("com.imjoych.jcdownloader.downloadqueue", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -46,9 +49,7 @@
     
     if (![self downloadOperation:operation.item.downloadId
                          groupId:operation.item.groupId]) {
-        @synchronized(self.operationList) {
-            [self.operationList addObject:operation];
-        }
+        [self addOperation:operation];
     }
     
     if (self.currentDownloadCount >= self.maxConcurrentDownloadCount) {
@@ -87,9 +88,7 @@
     }
     [[JCDownloadAgent sharedAgent] finishDownload:operation];
     if (operation.item.status == JCDownloadStatusUnknownError) {
-        @synchronized(self.operationList) {
-            [self.operationList removeObject:operation];
-        }
+        [self removeOperation:operation];
     }
     if (self.currentDownloadCount < self.maxConcurrentDownloadCount) {
         [self startNextDownload];
@@ -102,9 +101,38 @@
         return;
     }
     [[JCDownloadAgent sharedAgent] removeDownload:operation];
-    @synchronized(self.operationList) {
-        [self.operationList removeObject:operation];
+    [self removeOperation:operation];
+}
+
+#pragma mark - Operation data
+
+- (NSMutableArray *)operationList
+{
+    __block NSMutableArray *list = nil;
+    dispatch_sync(_dataQueue, ^{
+        list = self->_operationList;
+    });
+    return list;
+}
+
+- (void)addOperation:(JCDownloadOperation *)operation
+{
+    if (!operation) {
+        return;
     }
+    dispatch_barrier_async(_dataQueue, ^{
+        [self->_operationList addObject:operation];
+    });
+}
+
+- (void)removeOperation:(JCDownloadOperation *)operation
+{
+    if (!operation) {
+        return;
+    }
+    dispatch_barrier_async(_dataQueue, ^{
+        [self->_operationList removeObject:operation];
+    });
 }
 
 #pragma mark - Downloads operation with groupId
