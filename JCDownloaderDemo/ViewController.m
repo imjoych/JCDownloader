@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIButton *startButton;
 @property (nonatomic, strong) UIButton *stopButton;
 @property (nonatomic, strong) UIButton *removeButton;
+@property (nonatomic, strong) NSMutableArray *downloadList;
 
 @end
 
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"Download List";
+    _downloadList = [NSMutableArray array];
     
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     _tableView.delegate = self;
@@ -125,16 +127,16 @@
     self.stopButton.selected = NO;
     self.removeButton.selected = NO;
     if ([[JCDownloadQueue sharedQueue] downloadListWithGroupId:JCTImageDownloadGroupId].count < 1) {
-        NSMutableArray *downloadList = [NSMutableArray array];
+        [self.downloadList removeAllObjects];
         for (NSInteger index = 0; index < [self urlList].count; index++) {
             JCTImageDownloadItem *item = [[JCTImageDownloadItem alloc] init];
             item.groupId = JCTImageDownloadGroupId;
             item.downloadUrl = [self urlList][index];
             item.downloadFilePath = [JCDownloadUtilities filePathWithFileName:[item.downloadUrl lastPathComponent] folderName:@"downloadImages"];
             JCDownloadOperation *operation = [JCDownloadOperation operationWithItem:item];
-            [downloadList addObject:operation];
+            [self.downloadList addObject:operation];
         }
-        [[JCDownloadQueue sharedQueue] startDownloadList:downloadList];
+        [[JCDownloadQueue sharedQueue] startDownloadList:self.downloadList];
     } else {
         [[JCDownloadQueue sharedQueue] startDownloadsWithGroupId:JCTImageDownloadGroupId];
     }
@@ -155,6 +157,7 @@
     self.stopButton.selected = NO;
     self.removeButton.selected = YES;
     [[JCDownloadQueue sharedQueue] removeDownloadsWithGroupId:JCTImageDownloadGroupId];
+    [self.downloadList removeAllObjects];
     [self.tableView reloadData];
 }
 
@@ -175,14 +178,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[JCDownloadQueue sharedQueue] downloadListWithGroupId:JCTImageDownloadGroupId].count;
+    return self.downloadList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     JCTImageDownloadCell *cell = [tableView dequeueReusableCellWithIdentifier:JCTImageDownloadCellIdentifier];
-    JCDownloadOperation *operation = [[JCDownloadQueue sharedQueue] downloadListWithGroupId:JCTImageDownloadGroupId][indexPath.row];
-    cell.item = (JCTImageDownloadItem *)operation.item;
+    if (indexPath.row < self.downloadList.count) {
+        JCDownloadOperation *operation = self.downloadList[indexPath.row];
+        cell.item = (JCTImageDownloadItem *)operation.item;
+    }
     return cell;
 }
 
