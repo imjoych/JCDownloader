@@ -22,7 +22,10 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     return download_agent_file_operation_queue;
 }
 
-@interface JCDownloadAgent ()
+@interface JCDownloadAgent () {
+    dispatch_queue_t _taskQueue;
+    dispatch_queue_t _resumeQueue;
+}
 
 @property (nonatomic, strong) NSMutableDictionary *tasksDict;
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
@@ -39,6 +42,8 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
         _manager = [AFHTTPSessionManager manager];
         _minFileSizeForAutoProducingResumeData = 2 * 1024 * 1024;
         _pauseAndResumeDict = [NSMutableDictionary dictionary];
+        _taskQueue = dispatch_queue_create("com.jcdownloader.downloadagent.taskqueue", DISPATCH_QUEUE_SERIAL);
+        _resumeQueue = dispatch_queue_create("com.jcdownloader.downloadagent.resumequeue", DISPATCH_QUEUE_SERIAL);
         [self removeInvalidTempFiles];
     }
     return self;
@@ -107,12 +112,10 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
         return;
     }
     
-    NSString *key = [self downloadKey:operation.item];
     NSURLSessionDownloadTask *task = [self downloadTaskWithOperation:operation];
     if (task) {
-        @synchronized(self.tasksDict) {
-            self.tasksDict[key] = task;
-        }
+        NSString *key = [self downloadKey:operation.item];
+        [self setTask:task forKey:key];
     }
 }
 
@@ -133,9 +136,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     if ([requestTask respondsToSelector:@selector(cancel)]) {
         [requestTask cancel];
     }
-    @synchronized(self.tasksDict) {
-        [self.tasksDict removeObjectForKey:key];
-    }
+    [self removeTaskForKey:key];
 }
 
 - (void)removeDownload:(JCDownloadOperation *)operation
@@ -149,10 +150,39 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     if ([requestTask respondsToSelector:@selector(cancel)]) {
         [requestTask cancel];
     }
-    @synchronized(self.tasksDict) {
-        [self.tasksDict removeObjectForKey:key];
-    }
+    [self removeTaskForKey:key];
     [self removeDownloadFile:operation.item isDownloading:YES];
+}
+
+#pragma mark - data operation
+
+- (NSMutableDictionary *)tasksDict
+{
+    __block NSMutableDictionary *tasks = nil;
+    dispatch_sync(_taskQueue, ^{
+        tasks = self->_tasksDict;
+    });
+    return tasks;
+}
+
+- (void)setTask:(NSURLSessionDownloadTask *)task forKey:(NSString *)key
+{
+    if (!task || key.length < 1) {
+        return;
+    }
+    dispatch_barrier_async(_taskQueue, ^{
+        self->_tasksDict[key] = task;
+    });
+}
+
+- (void)removeTaskForKey:(NSString *)key
+{
+    if (key.length < 1) {
+        return;
+    }
+    dispatch_barrier_async(_taskQueue, ^{
+        [self->_tasksDict removeObjectForKey:key];
+    });
 }
 
 #pragma mark - download operation
@@ -194,9 +224,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
             }];
         }];
     }
-    @synchronized(self.tasksDict) {
-        [self.tasksDict removeObjectForKey:key];
-    }
+    [self removeTaskForKey:key];
 }
 
 /** Remove invalid download temp files. */
@@ -399,9 +427,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
         return;
     }
     NSString *key = [self downloadKey:operation.item];
-    @synchronized(self.pauseAndResumeDict) {
-        self.pauseAndResumeDict[key] = operation;
-    }
+    [self setPauseAndResumeOperation:operation forKey:key];
 }
 
 - (void)removePauseAndResumeOperation:(JCDownloadOperation *)operation
@@ -410,9 +436,7 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
         return;
     }
     NSString *key = [self downloadKey:operation.item];
-    @synchronized(self.pauseAndResumeDict) {
-        [self.pauseAndResumeDict removeObjectForKey:key];
-    }
+    [self removePauseAndResumeOperationForKey:key];
 }
 
 - (BOOL)isPauseAndResumeOperation:(JCDownloadOperation *)operation
@@ -422,6 +446,35 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
     }
     NSString *key = [self downloadKey:operation.item];
     return [self.pauseAndResumeDict.allKeys containsObject:key];
+}
+
+- (NSMutableDictionary *)pauseAndResumeDict
+{
+    __block NSMutableDictionary *dict = nil;
+    dispatch_sync(_resumeQueue, ^{
+        dict = self->_pauseAndResumeDict;
+    });
+    return dict;
+}
+
+- (void)setPauseAndResumeOperation:(JCDownloadOperation *)operation forKey:(NSString *)key
+{
+    if (key.length < 1 || !operation) {
+        return;
+    }
+    dispatch_barrier_async(_resumeQueue, ^{
+        self->_pauseAndResumeDict[key] = operation;
+    });
+}
+
+- (void)removePauseAndResumeOperationForKey:(NSString *)key
+{
+    if (key.length < 1) {
+        return;
+    }
+    dispatch_barrier_async(_resumeQueue, ^{
+        [self->_pauseAndResumeDict removeObjectForKey:key];
+    });
 }
 
 #pragma mark - Network
