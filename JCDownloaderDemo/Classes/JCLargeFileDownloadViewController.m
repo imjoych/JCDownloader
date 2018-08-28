@@ -11,6 +11,7 @@
 #import "JCDownloadQueue.h"
 #import "JCDownloadUtilities.h"
 #import "UIViewController+JCPreview.h"
+#import "JCDownloadAgent.h"
 
 @interface JCLargeFileDownloadViewController ()
 
@@ -106,9 +107,11 @@
 {
     JCDownloadItem *downloadItem = [[JCDownloadItem alloc] init];
     downloadItem.groupId = @"largeFileDownloadGroupId";
-    downloadItem.downloadUrl = @"http://wwwimages.adobe.com/content/dam/acom/en/fast-facts/pdfs/fast-facts.pdf";
-//    downloadItem.downloadUrl = @"http://dldir1.qq.com/qqfile/QQforMac/QQ_V4.0.6.dmg";
+//    downloadItem.downloadUrl = @"http://wwwimages.adobe.com/content/dam/acom/en/fast-facts/pdfs/fast-facts.pdf";
+    downloadItem.downloadUrl = @"https://dldir1.qq.com/qqfile/QQforMac/QQ_V6.5.0.dmg";
     downloadItem.downloadFilePath = [JCDownloadUtilities filePathWithFileName:[downloadItem.downloadUrl lastPathComponent] folderName:@"downloadFiles"];
+    downloadItem.downloadId = @"123456789";
+    downloadItem.tempFileName = @"QQ_V6.5.0.tmp";
     self.downloadOperation = [JCDownloadOperation operationWithItem:downloadItem];
     @weakify(self);
     [self.downloadOperation resetProgressBlock:^(NSProgress *progress) {
@@ -123,6 +126,11 @@
     [self downloadStatusChanged:self.downloadOperation.item.status];
     [self resetProgressWithCompletedUnitCount:self.downloadOperation.item.completedUnitCount
                                totalUnitCount:self.downloadOperation.item.totalUnitCount];
+    [[JCDownloadAgent sharedAgent] createResumeDataWithItem:downloadItem];
+    NSString *filePath = [[JCDownloadAgent sharedAgent] tempFilePathWithFileName:downloadItem.tempFileName];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        [[NSFileManager defaultManager] createFileAtPath:filePath contents:[NSData data] attributes:nil];
+    }
 }
 
 - (void)downloadAction:(id)sender
@@ -140,9 +148,9 @@
                 @strongify(self);
                 [self resetProgressWithCompletedUnitCount:self.downloadOperation.item.completedUnitCount
                                            totalUnitCount:self.downloadOperation.item.totalUnitCount];
-                [self jc_openPDFWithURL:filePath title:@"Adobe Fast facts" completion:^(BOOL success) {
-                    
-                }];
+//                [self jc_openPDFWithURL:filePath title:@"Adobe Fast facts" completion:^(BOOL success) {
+                
+//                }];
             }];
         }
             break;
