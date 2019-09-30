@@ -9,7 +9,7 @@
 #import "JCDownloadAgent.h"
 #import "JCDownloadOperation.h"
 #import "JCDownloadUtilities.h"
-#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 
 static NSString *const JCDownloadAgentFolder = @"com.jc.JCDownloader.folder";
 
