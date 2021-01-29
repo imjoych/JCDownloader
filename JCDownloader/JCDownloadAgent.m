@@ -42,8 +42,8 @@ static dispatch_queue_t jc_download_agent_file_operation_queue() {
         _manager = [AFHTTPSessionManager manager];
         _minFileSizeForAutoProducingResumeData = 2 * 1024 * 1024;
         _pauseAndResumeDict = [NSMutableDictionary dictionary];
-        _taskQueue = dispatch_queue_create("com.jcdownloader.downloadagent.taskqueue", DISPATCH_QUEUE_SERIAL);
-        _resumeQueue = dispatch_queue_create("com.jcdownloader.downloadagent.resumequeue", DISPATCH_QUEUE_SERIAL);
+        _taskQueue = dispatch_queue_create("com.jcdownloader.downloadagent.taskqueue", DISPATCH_QUEUE_CONCURRENT);
+        _resumeQueue = dispatch_queue_create("com.jcdownloader.downloadagent.resumequeue", DISPATCH_QUEUE_CONCURRENT);
         [self removeInvalidTempFiles];
     }
     return self;

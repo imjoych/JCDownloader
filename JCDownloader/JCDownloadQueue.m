@@ -26,7 +26,7 @@
     if (self = [super init]) {
         _maxConcurrentDownloadCount = 10;
         _operationList = [NSMutableArray array];
-        _dataQueue = dispatch_queue_create("com.imjoych.jcdownloader.downloadqueue", DISPATCH_QUEUE_SERIAL);
+        _dataQueue = dispatch_queue_create("com.imjoych.jcdownloader.downloadqueue", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
